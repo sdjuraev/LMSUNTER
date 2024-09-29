@@ -17,6 +17,14 @@ public class Person {
         this.role = role;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     @Override
     public String toString() {
         return "" +
