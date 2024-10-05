@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Random;
 
-public class IDGenerator {
+public class BookIDGenerator {
     public static String generateBookID() {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder bookID = new StringBuilder();

@@ -3,25 +3,37 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Member extends Person{
+public class Member extends Person {
     private List<Book> borrowedBooks;
-    public Member(String name, int age, String login, String password, Role role, Librarian librarian) {
-        super(name, age, login, password, role);
-        borrowedBooks = new ArrayList<>();
+    private static int currentBooks=0;
+
+    public Member(String name, int age, String login, String password) {
+        super(name, age, login, password, Role.MEMBER);
+        this.borrowedBooks = new ArrayList<>();
     }
-    public void borrowBook(Book book){
-        borrowedBooks.add(book);
-    }
-    public void returnBook(Book book){
-        for (Book b: borrowedBooks){
-            if (b.getBookID().equals(book.getBookID())){
-                b.returnBook();
-            }
+
+    public void borrowBook(Book book) {
+        if (currentBooks == 5) {
+            System.out.println("You already have 5 book. Maximum allowed books 5 only");
+
+        } else {
+            borrowedBooks.add(book);
         }
     }
-    public void displayBooks(){
-        for (Book b: borrowedBooks) {
+
+
+    public void returnBook() {
+        --currentBooks;
+    }
+
+    public void viewBorrowedBooks() {
+        System.out.println(String.format(String.format("%-8s %-25s %-20s %-15s", "ID", "Title", "Author", "Availability")));
+        for (Book b : borrowedBooks) {
             b.displayBook();
         }
+    }
+
+    public List<Book> getBorrowedBooks() {
+        return borrowedBooks;
     }
 }

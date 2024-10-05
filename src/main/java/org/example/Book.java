@@ -7,41 +7,47 @@ public class Book {
     private boolean isAvailable;
 
     public Book(String title, String author) {
-        this.bookID = IDGenerator.generateBookID();
+        this.bookID = BookIDGenerator.generateBookID();
         this.title = title;
         this.author = author;
         this.isAvailable = true;
     }
+
     public boolean borrowBook(){
         if (isAvailable){
-            isAvailable= false;
+            isAvailable = false;
             return true;
         }else {
-            System.out.println("You can't borrow this book");
+            System.out.println("You cant borrow the book. It is not available");
             return false;
         }
     }
     public boolean returnBook(){
-        if (!isAvailable){
-            isAvailable=true;
+        if (isAvailable==false){
+            isAvailable =true;
             return true;
         }else {
-            System.out.println("This book isn't borrowed");
+
             return false;
-        }
-    }
-    public void displayBook(){
-        System.out.print("Book ID: "+ bookID);
-        System.out.print(" Book Title: "+title);
-        System.out.print(" Book author "+ author);
-        if (isAvailable){
-            System.out.println(" Available");
-        }else {
-            System.out.println(" Not available");
         }
     }
 
     public String getBookID() {
         return bookID;
+    }
+    public void displayBook(){
+        System.out.println(String.format("%-8s %-25s %-20s %-15s", bookID, title, author, isAvailable?"Available":"Not Available"));
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
     }
 }
